@@ -23,11 +23,22 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build
-      # Build your program with the given configuration
       run: make
 
     - name: Test
-      working-directory: ${{github.workspace}}/build
-      # Execute tests defined by the CMake configuration.
-      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: make test
+
+    - name: Package
+      run: make package
+
+    - uses: actions/upload-artifact@v4
+      with:
+        path: |
+          build/libict-*.tar.Z
+          build/libict-*.tar.gz
+          build/libict-*.sh
+          build/libict-*.deb
+          build/libict-*.rpm
+        compression-level: 0
+        overwrite: true
+ 
