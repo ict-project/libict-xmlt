@@ -1,0 +1,3 @@
+[submodule "libict-utf8"]
+	path = libict-utf8
+	url = https://github.com/ict-project/libict-utf8.git
