@@ -22,6 +22,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Version
+      run: |
+        git fetch --tags
+        export GIT_VERSION=$(git describe)
+        echo GIT_VERSION=$GIT_VERSION
+
     - name: Build
       run: make
 
@@ -33,13 +39,12 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: package-${{ runner.os }}-${{ github.ref_name }}
+        name: package-${{ runner.os }}-${{ env.GIT_VERSION }}
         path: |
           build/libict-*.tar.Z
           build/libict-*.tar.gz
           build/libict-*.sh
           build/libict-*.deb
           build/libict-*.rpm
-        compression-level: 0
         overwrite: true
  
