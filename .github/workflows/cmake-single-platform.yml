@@ -22,6 +22,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Version
+      run: export GIT_VERSION=$(git describe)
+
     - name: Build
       run: make
 
@@ -33,7 +36,7 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: package
+        name: package-${{ env.OSTYPE }}-${{ env.GIT_VERSION }}
         path: |
           build/libict-*.tar.Z
           build/libict-*.tar.gz
