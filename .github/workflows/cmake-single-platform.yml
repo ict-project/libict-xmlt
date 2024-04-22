@@ -33,7 +33,7 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: package-${{ runner.os }}-${{ github.ref.name }}
+        name: package-${{ runner.os }}-${{ github.ref_name }}
         path: |
           build/libict-*.tar.Z
           build/libict-*.tar.gz
