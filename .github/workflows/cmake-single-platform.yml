@@ -24,7 +24,7 @@ jobs:
 
     - name: Version
       run: |
-        git fetch --tags
+        git pull
         export GIT_VERSION=$(git describe)
         echo GIT_VERSION=$GIT_VERSION
 
